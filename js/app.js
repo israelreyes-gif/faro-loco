@@ -187,7 +187,7 @@ function aplicarFase(estado) {
         });
       } else {
         document.getElementById('esperando-title').textContent =
-          `Esta noche, el faro ha iluminado al número ${estado.numeroElegido}.`;
+          `Esta noche, le ha tocado al número ${estado.numeroElegido}.`;
         go('esperando');
       }
       break;
