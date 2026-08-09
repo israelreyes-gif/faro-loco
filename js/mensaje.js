@@ -42,26 +42,26 @@ export function iniciarCuentaAtras(segundosRestantes, onExpirar) {
 
 function textoRestante(segundos) {
   const minutos = Math.ceil(segundos / 60);
-  if (minutos >= 60) return 'queda 1 hora';
-  if (minutos <= 1) return 'queda menos de 1 minuto';
-  return `quedan ${minutos} minutos`;
+  if (minutos >= 60) return 'te queda 1 hora, no la desperdicies';
+  if (minutos <= 1) return '¡corre, queda menos de 1 minuto!';
+  return `te quedan ${minutos} minutitos`;
 }
 
 async function enviarMensaje() {
   const texto = document.getElementById('write-text').value.trim();
 
   if (!texto) {
-    mostrarToast('error', 'Escribe algo', 'No puedes encender el faro sin dejar un mensaje.');
+    mostrarToast('error', 'Oye, escribe algo', 'No puedes encender el faro loco sin soltar nada.');
     return;
   }
 
   try {
     clearInterval(temporizador);
     await api.enviarMensaje({ categoria: categoriaActual, texto });
-    mostrarToast('success', 'El faro se ha encendido', 'Tu mensaje ya está en camino.');
+    mostrarToast('success', '¡Encendido!', 'Tu mensaje ya vuela hacia todo el mundo.');
     document.dispatchEvent(new CustomEvent('faro:mensaje-enviado'));
   } catch (err) {
-    mostrarToast('error', 'No se pudo enviar el mensaje', err.message || 'Inténtalo de nuevo en unos segundos.');
+    mostrarToast('error', 'No se pudo enviar', err.message || 'Prueba otra vez en unos segundos.');
   }
 }
 
