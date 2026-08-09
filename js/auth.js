@@ -1,6 +1,8 @@
 import { api, setToken, setSession } from './api.js';
 import { mostrarToast } from './toast.js';
 
+let temporizadorBloqueo = null;
+
 export function initAuthForms(onLoggedIn) {
   const loginBtn = document.getElementById('login-submit');
 
@@ -19,7 +21,18 @@ export function initAuthForms(onLoggedIn) {
       setSession(user);
       onLoggedIn(user);
     } catch (err) {
-      mostrarToast('error', 'Epa, eso no cuadra', 'Usuario o contraseña no coinciden, prueba otra vez.');
+      if (err.locked) {
+        iniciarBloqueo(err.segundosRestantes ?? 900);
+        return;
+      }
+
+      if (err.intentosRestantes === 1) {
+        mostrarToast('error', '¡Cuidado!', 'Un fallo más y te quedas fuera 15 minutos.');
+      } else if (typeof err.intentosRestantes === 'number') {
+        mostrarToast('error', 'Epa, eso no cuadra', `Te quedan ${err.intentosRestantes} intentos.`);
+      } else {
+        mostrarToast('error', 'Epa, eso no cuadra', 'Usuario o contraseña no coinciden, prueba otra vez.');
+      }
     }
   });
 
@@ -53,4 +66,41 @@ export function initAuthForms(onLoggedIn) {
       mostrarToast('error', 'No se pudo completar', mensaje);
     }
   });
+}
+
+function iniciarBloqueo(segundosRestantes) {
+  clearInterval(temporizadorBloqueo);
+
+  const boton = document.getElementById('login-submit');
+  const bloque = document.getElementById('login-bloqueo');
+  const fill = document.getElementById('login-bloqueo-fill');
+  const label = document.getElementById('login-bloqueo-label');
+  const segundosTotal = Math.max(segundosRestantes, 1);
+
+  boton.disabled = true;
+  boton.style.opacity = '0.4';
+  bloque.style.display = 'block';
+
+  const tick = () => {
+    if (segundosRestantes <= 0) {
+      clearInterval(temporizadorBloqueo);
+      boton.disabled = false;
+      boton.style.opacity = '1';
+      bloque.style.display = 'none';
+      return;
+    }
+
+    const porcentaje = Math.max(0, Math.min(100, (segundosRestantes / segundosTotal) * 100));
+    fill.style.width = porcentaje + '%';
+
+    const minutos = Math.ceil(segundosRestantes / 60);
+    label.textContent = minutos <= 1
+      ? 'bloqueado, ya casi...'
+      : `bloqueado, vuelve en ${minutos} minutos`;
+
+    segundosRestantes--;
+  };
+
+  tick();
+  temporizadorBloqueo = setInterval(tick, 1000);
 }
