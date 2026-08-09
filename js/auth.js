@@ -9,7 +9,7 @@ export function initAuthForms(onLoggedIn) {
     const password = document.getElementById('login-pass').value;
 
     if (!username || !password) {
-      mostrarToast('error', 'Faltan datos', 'Escribe tu usuario y tu contraseña.');
+      mostrarToast('error', 'Falta algo', 'Escribe tu usuario y tu contraseña, anda.');
       return;
     }
 
@@ -19,7 +19,7 @@ export function initAuthForms(onLoggedIn) {
       setSession(user);
       onLoggedIn(user);
     } catch (err) {
-      mostrarToast('error', 'No se pudo iniciar sesión', 'El acceso no es correcto. El faro no puede iluminarte.');
+      mostrarToast('error', 'Epa, eso no cuadra', 'Usuario o contraseña no coinciden, prueba otra vez.');
     }
   });
 
@@ -35,22 +35,22 @@ export function initAuthForms(onLoggedIn) {
     };
 
     if (!payload.username || !payload.password || !payload.nombre) {
-      mostrarToast('error', 'Faltan datos', 'Rellena al menos usuario, contraseña y nombre.');
+      mostrarToast('error', 'Falta algo', 'Rellena al menos usuario, contraseña y nombre.');
       return;
     }
     if (payload.password !== payload.password2) {
-      mostrarToast('error', 'Las contraseñas no coinciden', 'Revisa que las dos contraseñas sean iguales.');
+      mostrarToast('error', 'Ojo con eso', 'Las contraseñas no coinciden, mira bien.');
       return;
     }
 
     try {
       await api.register(payload);
-      mostrarToast('success', 'Cuenta creada', 'Ya formas parte del faro. Espera a que anochezca.');
+      mostrarToast('success', '¡Ya eres parte del clan!', 'Bienvenido al faro loco. Espera a que anochezca.');
     } catch (err) {
       const mensaje = err.status === 409
-        ? 'Ese usuario ya existe en el faro.'
+        ? 'Ese nombre ya está pillado por otro loco.'
         : (err.message || 'No se pudo completar el registro.');
-      mostrarToast('error', 'No se pudo completar el registro', mensaje);
+      mostrarToast('error', 'No se pudo completar', mensaje);
     }
   });
 }
