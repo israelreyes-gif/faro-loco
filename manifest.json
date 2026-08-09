@@ -1,7 +1,7 @@
 {
-  "name": "FARO",
-  "short_name": "FARO",
-  "description": "Cada noche, alguien es elegido.",
+  "name": "FARO LOCO",
+  "short_name": "FARO LOCO",
+  "description": "Cada noche, alguien pierde la cabeza.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
