@@ -45,6 +45,9 @@ async function request(path, { method = 'GET', body, auth = false } = {}) {
   if (!res.ok) {
     const err = new Error(data.error || 'Error de conexión con el faro');
     err.status = res.status;
+    err.locked = data.locked ?? false;
+    err.segundosRestantes = data.segundosRestantes;
+    err.intentosRestantes = data.intentosRestantes;
     throw err;
   }
   return data;
