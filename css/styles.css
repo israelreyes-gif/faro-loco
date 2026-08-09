@@ -222,8 +222,9 @@ html, body{
 
 /* sin mensaje */
 #screen-sinmensaje{ align-items:center; justify-content:center; padding:0 40px; gap:14px; text-align:center; }
-#screen-sinmensaje .t1{ font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-dim); }
-#screen-sinmensaje .t2{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size:18px; color:var(--ink); line-height:1.6; }
+#screen-sinmensaje > *:not(.bg-video-wrap):not(.back-fab){ position:relative; z-index:2; }
+#screen-sinmensaje .t1{ font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-dim); text-shadow:0 0 3px rgba(0,0,0,.9), 0 0 8px rgba(0,0,0,.8), 0 0 16px rgba(0,0,0,.6); }
+#screen-sinmensaje .t2{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size:18px; color:var(--ink); line-height:1.6; text-shadow:0 0 4px rgba(0,0,0,.9), 0 0 10px rgba(0,0,0,.85), 0 0 20px rgba(0,0,0,.65); }
 
 /* mensaje difundido */
 #screen-mensaje > *:not(.bg-video-wrap):not(.back-fab){ position:relative; z-index:2; }
