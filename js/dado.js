@@ -24,14 +24,14 @@ export function mostrarResultado({ esGanador, numero }) {
   die.classList.add('settled');
 
   if (esGanador) {
-    result.textContent = '¡El faro te ha iluminado a ti!';
+    result.textContent = '¡Te ha tocado a ti, campeón!';
     result.classList.remove('no-agraciado');
     sub.style.display = 'none';
     lanzarConfeti();
   } else {
-    result.textContent = `El faro ha iluminado al número ${numero}`;
+    result.textContent = `¡Le ha tocado al número ${numero}!`;
     result.classList.add('no-agraciado');
-    sub.textContent = 'Tú, esta noche, solo puedes esperar a que escriba.';
+    sub.textContent = 'Tú, esta noche, a esperar sentadito.';
     sub.style.display = 'block';
   }
 }
@@ -39,7 +39,7 @@ export function mostrarResultado({ esGanador, numero }) {
 export function lanzarConfeti() {
   const wrap = document.getElementById('confetti-wrap');
   if (!wrap) return;
-  const colors = ['#d8ab5c', '#e8cb98', '#9aa1a6', '#f2efe6'];
+  const colors = ['#5ec8e8', '#bfe7f5', '#9aa1a6', '#f2efe6'];
   for (let i = 0; i < 70; i++) {
     const p = document.createElement('div');
     p.className = 'confetti-piece';
