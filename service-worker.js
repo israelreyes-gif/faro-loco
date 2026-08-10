@@ -45,7 +45,7 @@ self.addEventListener('fetch', (event) => {
 });
 
 self.addEventListener('push', (event) => {
-  let data = { title: 'FARO', body: 'El faro tiene novedades para ti.' };
+  let data = { title: 'FARO LOCO', body: 'El faro loco tiene cotilleos para ti.' };
   try { data = event.data.json(); } catch (e) { /* payload en texto plano, se usa el default */ }
 
   event.waitUntil(
