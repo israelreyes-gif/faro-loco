@@ -1,6 +1,7 @@
 import { api } from './api.js';
 import { mostrarToast } from './toast.js';
 
+const TEXTO_MAX_LENGTH = 500;
 let categoriaActual = 'historia';
 let temporizador = null;
 
@@ -13,7 +14,26 @@ export function initEscritura() {
     });
   });
 
+  const textarea = document.getElementById('write-text');
+  textarea.addEventListener('input', actualizarContador);
+  actualizarContador();
+
   document.getElementById('write-submit').addEventListener('click', enviarMensaje);
+}
+
+function actualizarContador() {
+  const textarea = document.getElementById('write-text');
+  const contador = document.getElementById('write-char-counter');
+  const longitud = textarea.value.length;
+
+  contador.textContent = `${longitud} / ${TEXTO_MAX_LENGTH}`;
+  contador.classList.remove('cerca-limite', 'en-limite');
+
+  if (longitud >= TEXTO_MAX_LENGTH) {
+    contador.classList.add('en-limite');
+  } else if (longitud >= TEXTO_MAX_LENGTH - 50) {
+    contador.classList.add('cerca-limite');
+  }
 }
 
 export function iniciarCuentaAtras(segundosRestantes, onExpirar) {
