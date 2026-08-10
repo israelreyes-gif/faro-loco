@@ -75,6 +75,11 @@ html, body{
   padding:11px 12px; font-family:'Jost',sans-serif; font-size:14px; border-radius:2px; outline:none;
 }
 .field input:focus, .field textarea:focus{ border-color:var(--acento); }
+.field input[type="date"]{
+  -webkit-appearance:none; appearance:none;
+  width:100%; min-width:0; box-sizing:border-box;
+}
+.field input[type="date"]::-webkit-date-and-time-value{ text-align:left; }
 
 /* tarjetas de feedback flotantes */
 .toast-wrap{
