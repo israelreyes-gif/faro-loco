@@ -74,10 +74,11 @@ html, body{
   width:100%; background:#101215; border:1px solid #2b2e33; color:var(--ink);
   padding:11px 12px; font-family:'Jost',sans-serif; font-size:14px; border-radius:2px; outline:none;
 }
+.field input{ height:46px; box-sizing:border-box; }
 .field input:focus, .field textarea:focus{ border-color:var(--acento); }
 .field input[type="date"]{
   -webkit-appearance:none; appearance:none;
-  width:100%; min-width:0; box-sizing:border-box;
+  width:100%; min-width:0;
 }
 .field input[type="date"]::-webkit-date-and-time-value{ text-align:left; }
 
