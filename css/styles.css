@@ -219,6 +219,9 @@ html, body{
 .cat-pill{ flex:1; text-align:center; padding:9px 4px; border:1px solid #2b2e33; border-radius:20px; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-dim); cursor:pointer; background:rgba(0,0,0,.3); transition: border-color .25s ease, color .25s ease, background .25s ease, transform .3s cubic-bezier(.34,1.56,.64,1); }
 .cat-pill.active{ border-color:var(--acento); color:var(--acento-soft); background:rgba(94,200,232,.15); transform:scale(1.09); }
 #screen-escribiendo textarea{ min-height:130px; resize:none; font-family:'Cormorant Garamond', serif; font-size:15px; line-height:1.5; }
+.char-counter{ text-align:right; font-size:11px; color:var(--ink-dim); margin-top:6px; letter-spacing:.03em; }
+.char-counter.cerca-limite{ color:var(--acento-soft); }
+.char-counter.en-limite{ color:var(--error); }
 
 /* sin mensaje */
 #screen-sinmensaje{ align-items:center; justify-content:center; padding:0 40px; gap:14px; text-align:center; }
