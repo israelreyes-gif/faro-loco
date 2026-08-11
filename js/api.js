@@ -50,6 +50,14 @@ async function request(path, { method = 'GET', body, auth = false } = {}) {
     err.intentosRestantes = data.intentosRestantes;
     throw err;
   }
+
+  // Renovación silenciosa del token: si el backend manda uno nuevo
+  // (porque al anterior le quedaba poco tiempo), lo guardamos sin que
+  // la persona note nada.
+  if (data.nuevoToken) {
+    setToken(data.nuevoToken);
+  }
+
   return data;
 }
 
