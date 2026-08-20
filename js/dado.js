@@ -20,16 +20,17 @@ export function mostrarResultado({ esGanador, numero }) {
   const result = document.getElementById('dado-result');
   const sub = document.getElementById('dado-sub');
 
-  die.textContent = numero;
   die.classList.add('settled');
 
   if (esGanador) {
+    die.textContent = numero;
     result.textContent = '¡Te ha tocado a ti, campeón!';
     result.classList.remove('no-agraciado');
     sub.style.display = 'none';
     lanzarConfeti();
   } else {
-    result.textContent = `¡Le ha tocado al número ${numero}!`;
+    die.textContent = '🔒';
+    result.textContent = 'Esta noche el faro loco ya ha elegido a alguien.';
     result.classList.add('no-agraciado');
     sub.textContent = 'Tú, esta noche, a esperar sentadito.';
     sub.style.display = 'block';
