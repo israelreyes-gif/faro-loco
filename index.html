@@ -212,6 +212,14 @@
       <textarea id="write-text" maxlength="500" placeholder="Escribe aquí lo que quieras dejar esta noche..."></textarea>
       <div class="char-counter" id="write-char-counter">0 / 500</div>
     </div>
+    <div class="field">
+      <button class="btn photo-picker-btn" type="button" id="write-photo-btn">📷 Suéltale también una foto (opcional)</button>
+      <input type="file" accept="image/*" id="write-photo-input" style="display:none;">
+      <div class="photo-preview" id="write-photo-preview" style="display:none;">
+        <img id="write-photo-preview-img" alt="Foto seleccionada">
+        <button type="button" class="photo-remove-btn" id="write-photo-remove" title="Quitar foto">✕</button>
+      </div>
+    </div>
     <button class="btn primary" id="write-submit">Encender el faro</button>
   </section>
 
@@ -237,6 +245,7 @@
       <div class="broadcast-tag"><span class="dot"></span> escrito esta noche</div>
       <div class="broadcast-cat" id="msg-cat">HISTORIA</div>
 
+      <img class="broadcast-photo" id="msg-photo" style="display:none;" alt="Foto de esta noche">
       <div class="broadcast-text" id="msg-text">—</div>
       <div class="broadcast-sign">— desde algún rincón random del mundo</div>
     </div>
